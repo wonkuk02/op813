@@ -592,11 +592,11 @@ void NvgWindow::drawMaxSpeed(QPainter &p) {
 
   if (is_cruise_set) {
     const std::string maxspeed_str = std::to_string((int)std::nearbyint(maxspeed));
-    configFont(p, "Open Sans", 125, "sans-semibold");
+    configFont(p, "Open Sans", 76, "sans-semibold");
     drawText(p, rc.center().x(), 212, maxspeed_str.c_str(), 100);
   } else {
     configFont(p, "Open Sans", 76, "sans-semibold");
-    drawText(p, rc.center().x(), 196, "N/A", 100);
+    drawText(p, rc.center().x(), 195, "N/A", 100);
   }
 }
 

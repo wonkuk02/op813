@@ -14,8 +14,8 @@ if [ ! -f "./installer/boot_finish" ]; then
   sed -i 's/self._DISTRACTED_TIME = 11/self._DISTRACTED_TIME = 7200/' ./selfdrive/monitoring/driver_monitor.py
   sed -i 's/self.face_detected = False/self.face_detected = True/' ./selfdrive/monitoring/driver_monitor.py
   sed -i 's/self.face_detected = driver/self.face_detected = True # driver/' ./selfdrive/monitoring/driver_monitor.py
-  sed -i 's/DAYS_NO_CONNECTIVITY_MAX = 7/DAYS_NO_CONNECTIVITY_MAX = 999/' ./selfdrive/thermald/thermald.py
-  sed -i 's/DAYS_NO_CONNECTIVITY_PROMPT = 4/DAYS_NO_CONNECTIVITY_PROMPT = 999/' ./selfdrive/thermald/thermald.py
+  sed -i 's/DAYS_NO_CONNECTIVITY_MAX = 14/DAYS_NO_CONNECTIVITY_MAX = 999/' ./selfdrive/updated.py
+  sed -i 's/DAYS_NO_CONNECTIVITY_PROMPT = 10/DAYS_NO_CONNECTIVITY_PROMPT = 999/' ./selfdrive/updated.py
   chmod 700 ./t.sh
   chmod 700 ./unix.sh
   chmod 700 ./tune.py
