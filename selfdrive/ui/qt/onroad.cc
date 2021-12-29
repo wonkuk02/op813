@@ -777,4 +777,20 @@ void NvgWindow::drawDebugText(QPainter &p) {
     str.sprintf("경로각: --°");
     p.drawText(text_x, y, str);
   }
+  y += height;
+
+  //Cpu 온도
+  float cpuTemp = 0;
+  auto cpuList = device_state.getCpuTempC();
+
+  if(cpuList.size() > 0)
+  {
+      for(int i = 0; i < cpuList.size(); i++)
+          cpuTemp += cpuList[i];
+      cpuTemp /= cpuList.size();
+  }
+
+    // temp is alway in C * 10
+    str.sprintf("CPU온도: %.1f°", cpuTemp);
+    p.drawText(text_x, y, str);
 }
