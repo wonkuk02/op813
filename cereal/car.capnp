@@ -115,6 +115,7 @@ struct CarEvent @0x9b1657f34caf3ad3 {
 
     highCpuUsage @105;
     cruiseMismatch @110;
+    lkasDisabled @111;
 
     driverMonitorLowAccDEPRECATED @68;
     radarCanErrorDEPRECATED @15;

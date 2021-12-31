@@ -158,6 +158,7 @@ void OnroadWindow::offroadTransition(bool offroad) {
     if (map == nullptr && (uiState()->has_prime || !MAPBOX_TOKEN.isEmpty())) {
       MapWindow * m = new MapWindow(get_mapbox_settings());
       m->setFixedWidth(topWidget(this)->width() / 2);
+      m->offroadTransition(offroad);
       QObject::connect(uiState(), &UIState::offroadTransition, m, &MapWindow::offroadTransition);
       split->addWidget(m, 0, Qt::AlignRight);
       map = m;
@@ -632,7 +633,7 @@ void NvgWindow::drawSpeedLimit(QPainter &p) {
 
     p.setBrush(QBrush(QColor(255, 255, 255, 255)));
 
-    const int tickness = 15;
+    const int tickness = 14;
     rect.adjust(tickness, tickness, -tickness, -tickness);
     p.drawEllipse(rect);
 

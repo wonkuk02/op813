@@ -42,6 +42,7 @@ DESIRES = {
 class LateralPlanner:
   def __init__(self, CP, use_lanelines=True, wide_camera=False):
     self.use_lanelines = use_lanelines
+    self.wide_camera = wide_camera
     self.LP = LanePlanner(wide_camera)
 
     self.last_cloudlog_t = 0
@@ -77,10 +78,6 @@ class LateralPlanner:
     self.LP.parse_model(sm['modelV2'])
     if len(md.position.x) == TRAJECTORY_SIZE and len(md.orientation.x) == TRAJECTORY_SIZE:
       self.path_xyz = np.column_stack([md.position.x, md.position.y, md.position.z])
-
-      cameraOffset = ntune_common_get("cameraOffset")
-      self.path_xyz[:, 1] -= cameraOffset
-
       self.t_idxs = np.array(md.position.t)
       self.plan_yaw = list(md.orientation.z)
     if len(md.position.xStd) == TRAJECTORY_SIZE:
