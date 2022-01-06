@@ -53,7 +53,7 @@ protected:
   ItemStatus connect_status, panda_status, temp_status;
   QString net_type;
   int net_strength = 0;
-  QString wifi_addr = "--";
+  QString wifi_addr = "──";
 
   //battery
   const QMap<int, QPixmap> battery_imgs = {
