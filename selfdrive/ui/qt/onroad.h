@@ -121,7 +121,7 @@ private:
   QWidget *map = nullptr;
   QHBoxLayout* split;
 
-  // neokii
+  //neokii
 #ifdef QCOM2
 private:
   ScreenRecoder* recorder;

@@ -52,6 +52,7 @@ class CarInterfaceBase(ABC):
     return ACCEL_MIN, ACCEL_MAX
 
   @staticmethod
+  @abstractmethod
   def get_params(candidate, fingerprint=gen_empty_fingerprint(), has_relay=False, car_fw=None):
     pass
 
@@ -87,9 +88,7 @@ class CarInterfaceBase(ABC):
     ret.minEnableSpeed = -1. # enable is done by stock ACC, so ignore this
     ret.steerRatioRear = 0.  # no rear steering, at least on the listed cars aboveA
     ret.openpilotLongitudinalControl = False
-    ret.startAccel = -0.8
     ret.stopAccel = -2.0
-    ret.startingAccelRate = 3.2 # brake_travel/s while releasing on restart
     ret.stoppingDecelRate = 0.8 # brake_travel/s while trying to stop
     ret.vEgoStopping = 0.6
     ret.vEgoStarting = 0.5
@@ -109,7 +108,7 @@ class CarInterfaceBase(ABC):
     pass
 
   @abstractmethod
-  def apply(self, c: car.CarControl, controls) -> Tuple[car.CarControl.Actuators, List[bytes]]:
+  def apply(self, c: car.CarControl) -> Tuple[car.CarControl.Actuators, List[bytes]]:
     pass
 
   def create_common_events(self, cs_out, extra_gears=None, gas_resume_speed=-1, pcm_enable=True):

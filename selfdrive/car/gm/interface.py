@@ -60,6 +60,7 @@ class CarInterface(CarInterfaceBase):
     # GM port is a community feature
     # TODO: make a port that uses a car harness and it only intercepts the camera
     ret.communityFeature = True
+    ret.dashcamOnly = candidate in {CAR.CADILLAC_ATS, CAR.HOLDEN_ASTRA, CAR.MALIBU}
 
     # Presence of a camera on the object bus is ok.
     # Have to go to read_only if ASCM is online (ACC-enabled cars),
@@ -178,9 +179,9 @@ class CarInterface(CarInterfaceBase):
     ret.longitudinalTuning.kiV = [0.5, 0.53, 0.62, 0.68, 0.36, 0.3]
     ret.longitudinalTuning.kdBP = [0., 5., 33.]
     ret.longitudinalTuning.kdV = [1.3, 0.8, 0.2]
-    ret.startAccel = 0.8 #starting 단계에서 이 수치까지 초당 startingAccelRate로 가속
+    # ret.startAccel = 0.8 #starting 단계에서 이 수치까지 초당 startingAccelRate로 가속
     ret.stopAccel = -2.0 #stopping 단계에서 이수치까지 초당 stoppingDecelRate로 감속
-    ret.startingAccelRate = 9.6 # startAccel에 도달하기 위한 가속비
+    # ret.startingAccelRate = 9.6 # startAccel에 도달하기 위한 가속비
     ret.stoppingDecelRate = 2.4 # stopAccel에 도달하기 위한 감속비
     ret.vEgoStopping = 0.28 # 앞차 속도가 이 수치보다 작으면 pid에서 stopping으로 바뀜
     ret.vEgoStarting = 0.26 # 앞차 속도가 이 수치보다 커야 stopping에서 starting으로 옮김
@@ -304,7 +305,8 @@ class CarInterface(CarInterfaceBase):
     return self.CS.out
 
   def apply(self, c):
-    hud_v_cruise = c.hudControl.setSpeed
+    hud_control = c.hudControl
+    hud_v_cruise = hud_control.setSpeed
     if hud_v_cruise > 70:
       hud_v_cruise = 0
 
