@@ -65,8 +65,6 @@ void Sidebar::updateState(const UIState &s) {
     connectStatus = nanos_since_boot() - last_ping < 80e9 ? ItemStatus{"CONNECT\nONLINE", good_color} : ItemStatus{"CONNECT\nERROR", danger_color};
   }
   setProperty("connectStatus", QVariant::fromValue(connectStatus));
-  m_battery_img = deviceState.getBatteryStatus() == "Charging" ? 1 : 0;
-  m_batteryPercent = deviceState.getBatteryPercent();
 
   ItemStatus tempStatus = {"TEMP\nHIGH", danger_color};
   auto ts = deviceState.getThermalStatus();
@@ -84,28 +82,15 @@ void Sidebar::updateState(const UIState &s) {
     pandaStatus = {"GPS\nSEARCHING", warning_color};
   }*/
   setProperty("pandaStatus", QVariant::fromValue(pandaStatus));
+  m_battery_img = deviceState.getBatteryStatus() == "Charging" ? 1 : 0;
+  m_batteryPercent = deviceState.getBatteryPercent();
 }
 
 void Sidebar::paintEvent(QPaintEvent *event) {
   QPainter p(this);
   p.setPen(Qt::NoPen);
   p.setRenderHint(QPainter::Antialiasing);
-
-  //battery
-  QRect  rect(45, 293, 96, 36);
-  QRect  bq(50, 298, int(76* m_batteryPercent * 0.01), 25);
-  QBrush bgBrush("#149948");
-  p.fillRect(bq, bgBrush);
-  p.drawPixmap(rect, battery_imgs[m_battery_img]);
-
-  p.setPen(Qt::white);
-  configFont(p, "Open Sans", 30, "Regular");
-
-  char battery_str[32];
-
-  const QRect bt = QRect(170, 288, event->rect().width(), 50);
-  snprintf(battery_str, sizeof(battery_str), "%d%%", m_batteryPercent);
-  p.drawText(bt, Qt::AlignLeft, battery_str);
+  p.fillRect(rect(), QColor(57, 57, 57));
 
   // static imgs
   p.setOpacity(0.65);
@@ -121,6 +106,22 @@ void Sidebar::paintEvent(QPaintEvent *event) {
     p.drawEllipse(x, 196, 27, 27);
     x += 37;
   }
+
+  //battery
+  QRect  rect(45, 293, 96, 36);
+  QRect  bq(50, 298, int(76* m_batteryPercent * 0.01), 25);
+  QBrush bgBrush("#149948");
+  p.fillRect(bq, bgBrush);
+  p.drawPixmap(rect, battery_imgs[m_battery_img]);
+
+  p.setPen(Qt::white);
+  configFont(p, "Open Sans", 30, "Regular");
+
+  char battery_str[5];
+
+  const QRect bt = QRect(170, 288, event->rect().width(), 50);
+  snprintf(battery_str, sizeof(battery_str), "%d%%", m_batteryPercent);
+  p.drawText(bt, Qt::AlignLeft, battery_str);
 
   configFont(p, "Open Sans", 31, "Regular");
   p.setPen(QColor(0xff, 0xff, 0xff));
