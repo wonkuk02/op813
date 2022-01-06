@@ -82,7 +82,6 @@ Panda::Panda(std::string serial, uint32_t bus_offset) : bus_offset(bus_offset) {
     (hw_type == cereal::PandaState::PandaType::DOS);
   has_rtc = (hw_type == cereal::PandaState::PandaType::UNO) ||
             (hw_type == cereal::PandaState::PandaType::DOS);
-
   printf("hw_type: %d, is_pigeon=%d !!!!!\n", (int)hw_type, (int)is_pigeon);
 
   return;

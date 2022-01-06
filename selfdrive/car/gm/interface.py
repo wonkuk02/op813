@@ -60,6 +60,7 @@ class CarInterface(CarInterfaceBase):
     # GM port is a community feature
     # TODO: make a port that uses a car harness and it only intercepts the camera
     ret.communityFeature = True
+    ret.dashcamOnly = candidate in {CAR.CADILLAC_ATS, CAR.HOLDEN_ASTRA, CAR.MALIBU}
 
     # Presence of a camera on the object bus is ok.
     # Have to go to read_only if ASCM is online (ACC-enabled cars),
@@ -304,7 +305,8 @@ class CarInterface(CarInterfaceBase):
     return self.CS.out
 
   def apply(self, c):
-    hud_v_cruise = c.hudControl.setSpeed
+    hud_control = c.hudControl
+    hud_v_cruise = hud_control.setSpeed
     if hud_v_cruise > 70:
       hud_v_cruise = 0
 
