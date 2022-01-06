@@ -39,15 +39,15 @@ class kegman_kans_conf():
         self.config = json.load(f)
 
       if "battPercOff" not in self.config:
-        self.config.update({"battPercOff":"85"})
+        self.config.update({"battPercOff":"91"})
         self.config.update({"carVoltageMinEonShutdown":"12000"})
         self.element_updated = True
 
       if "tuneGernby" not in self.config:
         self.config.update({"tuneGernby":"1"})
-        self.config.update({"Kp":"0.175"})
+        self.config.update({"Kp":"0.205"})
         self.config.update({"Ki":"0.012"})
-        self.config.update({"Kd":"0.00017"})
+        self.config.update({"Kd":"0.000037"})
         self.element_updated = True
 
       if "liveParams" not in self.config:
@@ -67,7 +67,7 @@ class kegman_kans_conf():
         self.element_updated = True
 
       if "steerLimitTimer" not in self.config:
-        self.config.update({"steerLimitTimer":"2.5"})
+        self.config.update({"steerLimitTimer":"3.5"})
         self.element_updated = True
 
       if "CruiseDelta" not in self.config:
@@ -91,11 +91,11 @@ class kegman_kans_conf():
         self.write_config(self.config)
 
     else:
-      self.config = {"battChargeMin":"70", "battChargeMax":"80", \
+      self.config = {"battChargeMin":"70", "battChargeMax":"90", \
          "battPercOff":"85", "carVoltageMinEonShutdown":"12000", \
-         "tuneGernby":"1", "AutoHold":"1", "steerLimitTimer":"2.5", \
-         "Kp":"0.185", "Ki":"0.0187", "Kd":"0.011237", "Kf":"0.00006", \
-         "STOPPING_DISTANCE":"1.5", "CruiseDelta":"5", "CruiseEnableMin":"10", \
+         "tuneGernby":"1", "AutoHold":"1", "steerLimitTimer":"3.5", \
+         "Kp":"0.205", "Ki":"0.0127", "Kd":"0.000037", "Kf":"0.00006", \
+         "STOPPING_DISTANCE":"1.2", "CruiseDelta":"5", "CruiseEnableMin":"10", \
          "liveParams":"1", "deadzone":"0.2", \
          "epsModded": "0", "CAMERA_SPEED_FACTOR":"0.98"}
 
