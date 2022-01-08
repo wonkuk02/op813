@@ -86,7 +86,7 @@ def register(show_spinner=False) -> str:
 
   if dongle_id:
     params.put("DongleId", dongle_id)
-    set_offroad_alert("Offroad_UnofficialHardware", dongle_id == UNREGISTERED_DONGLE_ID)
+    # set_offroad_alert("Offroad_UnofficialHardware", dongle_id == UNREGISTERED_DONGLE_ID) # 새기기 등록금지 해제용 주석
   return dongle_id
 
 
