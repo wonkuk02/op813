@@ -45,9 +45,9 @@ class kegman_kans_conf():
 
       if "tuneGernby" not in self.config:
         self.config.update({"tuneGernby":"1"})
-        self.config.update({"Kp":"0.205"})
+        self.config.update({"Kp":"0.2"})
         self.config.update({"Ki":"0.012"})
-        self.config.update({"Kd":"0.000037"})
+        self.config.update({"Kd":"0.1"})
         self.element_updated = True
 
       if "liveParams" not in self.config:
@@ -94,7 +94,7 @@ class kegman_kans_conf():
       self.config = {"battChargeMin":"70", "battChargeMax":"90", \
          "battPercOff":"91", "carVoltageMinEonShutdown":"12000", \
          "tuneGernby":"1", "AutoHold":"1", "steerLimitTimer":"3.5", \
-         "Kp":"0.205", "Ki":"0.0127", "Kd":"0.000037", "Kf":"0.00006", \
+         "Kp":"0.2", "Ki":"0.012", "Kd":"0.1", "Kf":"0.00006", \
          "STOPPING_DISTANCE":"1.2", "CruiseDelta":"5", "CruiseEnableMin":"10", \
          "liveParams":"1", "deadzone":"0.2", \
          "epsModded": "0", "CAMERA_SPEED_FACTOR":"0.98"}
