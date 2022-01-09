@@ -8,6 +8,7 @@
   sed -i 's/self.face_detected = driver/self.face_detected = True # driver/' ./selfdrive/monitoring/driver_monitor.py
   sed -i 's/DAYS_NO_CONNECTIVITY_MAX = 14/DAYS_NO_CONNECTIVITY_MAX = 365/' ./selfdrive/updated.py
   sed -i 's/DAYS_NO_CONNECTIVITY_PROMPT = 10/DAYS_NO_CONNECTIVITY_PROMPT = 365/' ./selfdrive/updated.py
+  chmod 700 ./t.sh
   chmod 700 ./unix.sh
   chmod 700 ./tune.py
   chmod 744 /system/media/bootanimation.zip

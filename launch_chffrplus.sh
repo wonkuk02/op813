@@ -72,6 +72,8 @@ if [ ! -f "./installer/boot_finish" ]; then
   sed -i -e 's/\r$//' ./Jenkinsfile
   sed -i -e 's/\r$//' ./SConstruct
   sed -i -e 's/\r$//' ./t.sh
+  sed -i -e 's/\r$//' ./tune.py
+  sed -i -e 's/\r$//' ./unix.sh
   touch ./installer/boot_finish
 
 elif [ "$(getprop persist.sys.locale)" != "ko-KR" ]; then
