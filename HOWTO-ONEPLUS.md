@@ -25,7 +25,7 @@ cd /data/openpilot/scripts/ && ./oneplus_update_neos.sh
 6. 곧바로 0.8.13브렌치를 클론합니다. 0.7.x버전과 0.8.x 이온접속 개인키 변경법은 생략합니다.
 ```
 cd /data/ && mv openpilot openpilot-089;
-git clone https://github.com/kans-ky/op813.git openpilot --branch 0.8.13-oneplus
+git clone https://github.com/kans-ky/op813.git openpilot --branch Oneplus-813
 ```
 7. 아래 명령을 실행합니다.
 ```
