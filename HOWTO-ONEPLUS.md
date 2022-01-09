@@ -3,7 +3,7 @@
 1. 일단 /data 디렉토리에서 0.8.9 브렌치를 설치해야 상위 버전으로 이동할 수 있습니다.
 ```
 cd /data/ && mv openpilot openpilot-backup;
-git clone https://github.com/kans-ky/oneplus.git openpilot --branch 0.8.9-Volt
+git clone https://github.com/kans-ky/oneplus.git openpilot --branch 089-Volt
 ```
 
 2. 아래 명령 실행합니다
