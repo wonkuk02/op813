@@ -95,7 +95,7 @@ class kegman_kans_conf():
          "battPercOff":"91", "carVoltageMinEonShutdown":"12000", \
          "tuneGernby":"1", "AutoHold":"1", "steerLimitTimer":"3.5", \
          "Kp":"0.2", "Ki":"0.012", "Kd":"0.1", "Kf":"0.00006", \
-         "STOPPING_DISTANCE":"1.5", "CruiseDelta":"5", "CruiseEnableMin":"10", \
+         "STOPPING_DISTANCE":"1.2", "CruiseDelta":"5", "CruiseEnableMin":"10", \
          "liveParams":"1", "deadzone":"0.2", \
          "epsModded": "0", "CAMERA_SPEED_FACTOR":"0.98"}
 

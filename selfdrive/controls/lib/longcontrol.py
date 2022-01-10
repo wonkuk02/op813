@@ -28,7 +28,7 @@ def long_control_state_trans(CP, active, long_control_state, v_ego, v_target_fut
 
   # neokii
   if radarState is not None and radarState.leadOne is not None and radarState.leadOne.status:
-    starting_condition = starting_condition and ((radarState.leadOne.vLead > CP.vEgoStarting) or (radarState.leadOne.dRel > 0.4))
+    starting_condition = starting_condition and ((radarState.leadOne.vLead > CP.vEgoStarting) or (radarState.leadOne.dRel > .4))
 
   if not active:
     long_control_state = LongCtrlState.off

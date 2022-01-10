@@ -98,7 +98,7 @@ class CarInterface(CarInterfaceBase):
 
 # D gain
       ret.lateralTuning.pid.kdBP = [0.]
-      ret.lateralTuning.pid.kdV = [0.0002]  #corolla from shane fork : 0.725
+      ret.lateralTuning.pid.kdV = [0.1]  #corolla from shane fork : 0.725
 
     elif candidate == CAR.MALIBU:
       # supports stop and go, but initial engage must be above 18mph (which include conservatism)
@@ -173,12 +173,12 @@ class CarInterface(CarInterfaceBase):
     # ret.longitudinalTuning.kiBP = [0.]
     # ret.longitudinalTuning.kiV = [0.36]
     # Volt's kp, ki
-    ret.longitudinalTuning.kpBP = [-0.5, 5.6, 8.3, 13.9, 19.4, 33.]
-    ret.longitudinalTuning.kpV = [4.2, 3.8, 1.9, 1.5, 0.8, 0.4]
-    ret.longitudinalTuning.kiBP = [-0.5, 5.6, 8.4, 13.9, 19.4, 33.]
+    ret.longitudinalTuning.kpBP = [-1.08 * CV.KPH_TO_MS, 10 * CV.KPH_TO_MS, 20 * CV.KPH_TO_MS, 50 * CV.KPH_TO_MS, 70 * CV.KPH_TO_MS, 120 * CV.KPH_TO_MS]
+    ret.longitudinalTuning.kpV = [4.2, 3.8, 2.9, 1.7, 0.8, 0.4]
+    ret.longitudinalTuning.kiBP = [-1.08 * CV.KPH_TO_MS, 20 * CV.KPH_TO_MS, 30 * CV.KPH_TO_MS, 50 * CV.KPH_TO_MS, 70 * CV.KPH_TO_MS, 120 * CV.KPH_TO_MS]
     ret.longitudinalTuning.kiV = [0.5, 0.53, 0.62, 0.68, 0.36, 0.3]
-    ret.longitudinalTuning.kdBP = [0., 5., 33.]
-    ret.longitudinalTuning.kdV = [1.3, 0.8, 0.2]
+    ret.longitudinalTuning.kdBP = [0., 15., 33.]
+    ret.longitudinalTuning.kdV = [0.05, 0.935, 1.65]
     # ret.startAccel = 0.8 #starting 단계에서 이 수치까지 초당 startingAccelRate로 가속
     ret.stopAccel = -2.0 #stopping 단계에서 이수치까지 초당 stoppingDecelRate로 감속
     # ret.startingAccelRate = 9.6 # startAccel에 도달하기 위한 가속비
