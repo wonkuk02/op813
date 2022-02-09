@@ -839,7 +839,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
       "AutoHold Activated",
       "You can rest your foot now.",
       AlertStatus.normal, AlertSize.none,
-      Priority.LOW, VisualAlert.none, AudibleAlert.autoHoldOn, 3.),
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, 3.),
   },
 
   EventName.slowingDownSpeed: {
@@ -847,6 +847,6 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
       "",
       "Slowing down",
       AlertStatus.normal, AlertSize.small,
-      Priority.MID, VisualAlert.none, AudibleAlert.slowingDownSpeed, 2.),
+      Priority.MID, VisualAlert.none, AudibleAlert.none, 2.),
   },
 }
